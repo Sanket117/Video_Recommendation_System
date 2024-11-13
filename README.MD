@@ -29,7 +29,8 @@ Base URL: https://api.socialverseapp.com
     liked_posts = requests.get(f"{base_url}/posts/like?page=1&page_size=5", headers=headers).json()
     Hybrid Recommendation Example
 
-1. **Hybrid Recommendation Example**    
+1. **Hybrid Recommendation Example**  
+    ```bash 
     def hybrid_recommendations(post_id, user_id, alpha=0.5):
         content_similarities = cosine_sim[post_id]
         user_similarities = user_similarity[user_id]
@@ -37,7 +38,8 @@ Base URL: https://api.socialverseapp.com
         return posts_df_clean.iloc[hybrid_scores.argsort()[-5:][::-1]]
     Evaluate with Click-Through Rate (CTR)
 
-1. **Evaluate with Click-Through Rate (CTR)**    
+1. **Evaluate with Click-Through Rate (CTR)**  
+    ```bash  
     import numpy as np
     def click_through_rate(recommended_posts, actual_clicks):
         clicked = np.isin(recommended_posts['id'], actual_clicks)
