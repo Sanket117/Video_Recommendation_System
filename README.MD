@@ -20,32 +20,28 @@ Base URL: https://api.socialverseapp.com
 
 ## Usage
 1. **Fetch Data**
-  ```bash
-  python
-  Copy code
+    ```bash
 
-  import requests
-  base_url = "https://api.socialverseapp.com"
-  headers = {"Flic-Token": "your_flic_token_here"}
-  viewed_posts = requests.get(f"{base_url}/posts/view?page=1&page_size=1000", headers=headers).json()
-  liked_posts = requests.get(f"{base_url}/posts/like?page=1&page_size=5", headers=headers).json()
-  Hybrid Recommendation Example
+    import requests
+    base_url = "https://api.socialverseapp.com"
+    headers = {"Flic-Token": "your_flic_token_here"}
+    viewed_posts = requests.get(f"{base_url}/posts/view?page=1&page_size=1000", headers=headers).json()
+    liked_posts = requests.get(f"{base_url}/posts/like?page=1&page_size=5", headers=headers).json()
+    Hybrid Recommendation Example
 
-  python
-  Copy code
-  def hybrid_recommendations(post_id, user_id, alpha=0.5):
-      content_similarities = cosine_sim[post_id]
-      user_similarities = user_similarity[user_id]
-      hybrid_scores = alpha * content_similarities + (1 - alpha) * user_similarities
-      return posts_df_clean.iloc[hybrid_scores.argsort()[-5:][::-1]]
-  Evaluate with Click-Through Rate (CTR)
+1. **Hybrid Recommendation Example**    
+    def hybrid_recommendations(post_id, user_id, alpha=0.5):
+        content_similarities = cosine_sim[post_id]
+        user_similarities = user_similarity[user_id]
+        hybrid_scores = alpha * content_similarities + (1 - alpha) * user_similarities
+        return posts_df_clean.iloc[hybrid_scores.argsort()[-5:][::-1]]
+    Evaluate with Click-Through Rate (CTR)
 
-  python
-  Copy code
-  import numpy as np
-  def click_through_rate(recommended_posts, actual_clicks):
-      clicked = np.isin(recommended_posts['id'], actual_clicks)
-      return np.sum(clicked) / len(recommended_posts)
+1. **Evaluate with Click-Through Rate (CTR)**    
+    import numpy as np
+    def click_through_rate(recommended_posts, actual_clicks):
+        clicked = np.isin(recommended_posts['id'], actual_clicks)
+        return np.sum(clicked) / len(recommended_posts)
 
 ## Future Improvements
 -**Tune Hyperparameters**
