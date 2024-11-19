@@ -24,7 +24,7 @@ Base URL: https://api.socialverseapp.com
 
     import requests
     base_url = "https://api.socialverseapp.com"
-    headers = {"Flic-Token": "your_flic_token_here"}
+    headers = {"Flic-Token": "flic_1e01009f9c1a54706f385bcc1993a08fd9647ba8f499572d280654d1c03c47bf"}
     viewed_posts = requests.get(f"{base_url}/posts/view?page=1&page_size=1000", headers=headers).json()
     liked_posts = requests.get(f"{base_url}/posts/like?page=1&page_size=5", headers=headers).json()
     Hybrid Recommendation Example
